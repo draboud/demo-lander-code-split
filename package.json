@@ -1,0 +1,18 @@
+{
+  "name": "demo-lander-code-split",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve",
+    "build": "esbuild src/main.js --bundle --outfile=dist/script.js --watch",
+    "build-by-file": "node builder.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.25.10",
+    "serve": "^14.2.5"
+  }
+}

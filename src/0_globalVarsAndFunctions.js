@@ -24,6 +24,7 @@ export const navLinkInstructions = document.querySelector(
 export const allNavLinks = document.querySelectorAll(".nav_menu_link");
 export const loader = document.querySelector(".loader-text");
 export const blackout = document.querySelector(".blackout");
+export const pauseWrapper = document.querySelector(".pause-wrapper");
 export const sectionFeatures = document.querySelector(".section_features");
 export const sectionComponents = document.querySelector(".section_components");
 export const sectionInstructions = document.querySelector(
@@ -43,6 +44,7 @@ export let initializing = true;
 export let activeSection = document.querySelector(".section_features");
 export let activeSectionName = activeSection.classList[0].slice(8);
 export let currentViewName = "view-a";
+export let pauseFlag = false;
 export let ctrlBtnIndex;
 export let startBtnRange;
 export let endBtnRange;
@@ -63,6 +65,9 @@ export function SetActiveSectionName(newValue) {
 }
 export function SetCurrentViewName(newValue) {
   currentViewName = newValue;
+}
+export function SetPauseFlag(newValue) {
+  pauseFlag = newValue;
 }
 export function SetStartBtnRange(newValue) {
   startBtnRange = newValue;
@@ -192,7 +197,8 @@ export const ActivateSectionVideo = function (vidName, vidIndex) {
     .querySelectorAll(".video-wrap.mobile-p")
     [vidIndex].classList.add("active");
 };
-export const PlaySectionVideo = function (vidName, vidIndex) {
+export const PlaySectionVideo = function (vidName, vidIndex, pauseEnable) {
+  if (pauseEnable) pauseWrapper.style.pointerEvents = "auto";
   if (!vidIndex) vidIndex = 0;
   activeSection
     .querySelector(`.section-wrap-vids.${vidName}`)

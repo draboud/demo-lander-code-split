@@ -6,7 +6,7 @@
   var DELAY_BEFORE_FEATURE_TEXT = 1e3;
   var PAUSE_AFTER_FEATURE_END = 1500;
   var NO_OF_INSTRUCTION_VIDS = 4;
-  var PAUSE_BETWEEN_INSTRUCTION_VIDS = 1500;
+  var PAUSE_BETWEEN_INSTRUCTION_VIDS = 1e3;
   var INSTRUCTION_VIDS_LOOPING = true;
   var COMP_BTNS_START_RANGE_A = 0;
   var COMP_BTNS_END_RANGE_A = 5;
@@ -27,6 +27,7 @@
   var allNavLinks = document.querySelectorAll(".nav_menu_link");
   var loader = document.querySelector(".loader-text");
   var blackout = document.querySelector(".blackout");
+  var pauseWrapper = document.querySelector(".pause-wrapper");
   var sectionFeatures = document.querySelector(".section_features");
   var sectionComponents = document.querySelector(".section_components");
   var sectionInstructions = document.querySelector(
@@ -45,6 +46,7 @@
   var activeSection = document.querySelector(".section_features");
   var activeSectionName = activeSection.classList[0].slice(8);
   var currentViewName = "view-a";
+  var pauseFlag = false;
   var ctrlBtnIndex;
   var startBtnRange;
   var endBtnRange;
@@ -62,6 +64,9 @@
   }
   function SetCurrentViewName(newValue) {
     currentViewName = newValue;
+  }
+  function SetPauseFlag(newValue) {
+    pauseFlag = newValue;
   }
   function SetStartBtnRange(newValue) {
     startBtnRange = newValue;
@@ -163,7 +168,8 @@
     activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap")[vidIndex].classList.add("active");
     activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap.mobile-p")[vidIndex].classList.add("active");
   };
-  var PlaySectionVideo = function(vidName, vidIndex) {
+  var PlaySectionVideo = function(vidName, vidIndex, pauseEnable) {
+    if (pauseEnable) pauseWrapper.style.pointerEvents = "auto";
     if (!vidIndex) vidIndex = 0;
     activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap")[vidIndex].querySelector(".vid").play();
     activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap.mobile-p")[vidIndex].querySelector(".vid-mobile-p").play();
@@ -345,6 +351,7 @@
     //DEFINITIONS
     instructionsSection = document.querySelector(".section_instructions");
     allVidsInstructions = sectionInstructions.querySelectorAll(".vid");
+    allVidWrappersInstuctions = sectionInstructions.querySelectorAll(".video-wrap");
     allCtrlBtnsInstructions = sectionInstructions.querySelectorAll(
       ".ctrl-btn.instructions"
     );
@@ -356,10 +363,17 @@
     AddHandlerVidsInstructionsEnds = function(handler) {
       this.allVidsInstructions.forEach(function(el) {
         el.addEventListener("ended", function() {
+          pauseWrapper.style.pointerEvents = "none";
           el.classList.remove("active");
           el.pause();
           handler();
         });
+      });
+    };
+    AddHandlerVidsInstructionsPause = function(handler) {
+      pauseWrapper.addEventListener("click", function() {
+        pauseFlag ? SetPauseFlag(false) : SetPauseFlag(true);
+        handler();
       });
     };
     AddHandlerCtrlBtnWrapperInstructions = function(handler) {
@@ -476,6 +490,9 @@
       components_default.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0, 0);
     navigation_default.ResetSectionSpecial();
     clearTimeout(features_default.featureVidTimer);
+    pauseWrapper.style.pointerEvents = "none";
+    pauseWrapper.classList.remove("active");
+    SetPauseFlag(false);
     ResetSectionVideos("all");
     DeactivateActivateSectionText("main");
     ActivateSection();
@@ -568,14 +585,29 @@
         "instructions",
         instructions_default.currentInstructionVid
       );
-      PlaySectionVideo("instructions", instructions_default.currentInstructionVid);
+      PlaySectionVideo(
+        "instructions",
+        instructions_default.currentInstructionVid,
+        true
+      );
       DeactivateActivateCurrentCtrlButtons(
         "instructions",
         instructions_default.currentInstructionVid
       );
     }, PAUSE_BETWEEN_INSTRUCTION_VIDS);
   };
+  var MainVidsInstructionsPauseUnpause = function() {
+    if (pauseFlag) {
+      pauseWrapper.classList.add("active");
+      instructions_default.allVidsInstructions[instructions_default.currentInstructionVid].pause();
+    } else {
+      pauseWrapper.classList.remove("active");
+      instructions_default.allVidsInstructions[instructions_default.currentInstructionVid].play();
+    }
+  };
   var MainCtrlBtnsInstructions = function() {
+    SetPauseFlag(false);
+    pauseWrapper.classList.remove("active");
     clearTimeout(instructions_default.instructionVidTimer);
     instructions_default.instructionVidTimer = null;
     FlashBlackout(BLACKOUT_STANDARD);
@@ -586,7 +618,11 @@
     ResetSectionVideos();
     DeactivateActivateSectionText();
     DeactivateActivateSectionImage();
-    PlaySectionVideo("instructions", instructions_default.currentInstructionVid);
+    PlaySectionVideo(
+      "instructions",
+      instructions_default.currentInstructionVid,
+      true
+    );
     DeactivateActivateCurrentCtrlButtons(
       "instructions",
       instructions_default.currentInstructionVid
@@ -608,6 +644,9 @@
     components_default.AddHandlerTextImgBtn(MainTextImgBtn);
     components_default.AddHandlerCtrlBtnWrapperComponents(MainCtrlBtnsComponents);
     instructions_default.AddHandlerVidsInstructionsEnds(MainInstructionsVidsEnds);
+    instructions_default.AddHandlerVidsInstructionsPause(
+      MainVidsInstructionsPauseUnpause
+    );
     instructions_default.AddHandlerCtrlBtnWrapperInstructions(MainCtrlBtnsInstructions);
     ctrlBtnWrapper.classList.remove("active");
   };

@@ -7,6 +7,8 @@ class instructions {
   //DEFINITIONS
   instructionsSection = document.querySelector(".section_instructions");
   allVidsInstructions = global.sectionInstructions.querySelectorAll(".vid");
+  allVidWrappersInstuctions =
+    global.sectionInstructions.querySelectorAll(".video-wrap");
   allCtrlBtnsInstructions = global.sectionInstructions.querySelectorAll(
     ".ctrl-btn.instructions"
   );
@@ -18,10 +20,17 @@ class instructions {
   AddHandlerVidsInstructionsEnds = function (handler) {
     this.allVidsInstructions.forEach(function (el) {
       el.addEventListener("ended", function () {
+        global.pauseWrapper.style.pointerEvents = "none";
         el.classList.remove("active");
         el.pause();
         handler();
       });
+    });
+  };
+  AddHandlerVidsInstructionsPause = function (handler) {
+    global.pauseWrapper.addEventListener("click", function () {
+      global.pauseFlag ? global.SetPauseFlag(false) : global.SetPauseFlag(true);
+      handler();
     });
   };
   AddHandlerCtrlBtnWrapperInstructions = function (handler) {

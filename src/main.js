@@ -36,6 +36,9 @@ const MainAllNavLinks = function (navLink) {
       .scroll(0, 0);
   navigation.ResetSectionSpecial();
   clearTimeout(features.featureVidTimer);
+  global.pauseWrapper.style.pointerEvents = "none";
+  global.pauseWrapper.classList.remove("active");
+  global.SetPauseFlag(false);
   global.ResetSectionVideos("all");
   global.DeactivateActivateSectionText("main");
   global.ActivateSection();
@@ -149,14 +152,31 @@ const MainInstructionsVidsEnds = function () {
       "instructions",
       instructions.currentInstructionVid
     );
-    global.PlaySectionVideo("instructions", instructions.currentInstructionVid);
+    global.PlaySectionVideo(
+      "instructions",
+      instructions.currentInstructionVid,
+      true
+    );
     global.DeactivateActivateCurrentCtrlButtons(
       "instructions",
       instructions.currentInstructionVid
     );
   }, PAUSE_BETWEEN_INSTRUCTION_VIDS);
 };
+const MainVidsInstructionsPauseUnpause = function () {
+  if (global.pauseFlag) {
+    global.pauseWrapper.classList.add("active");
+    instructions.allVidsInstructions[
+      instructions.currentInstructionVid
+    ].pause();
+  } else {
+    global.pauseWrapper.classList.remove("active");
+    instructions.allVidsInstructions[instructions.currentInstructionVid].play();
+  }
+};
 const MainCtrlBtnsInstructions = function () {
+  global.SetPauseFlag(false);
+  global.pauseWrapper.classList.remove("active");
   clearTimeout(instructions.instructionVidTimer);
   instructions.instructionVidTimer = null;
   global.FlashBlackout(BLACKOUT_STANDARD);
@@ -167,7 +187,11 @@ const MainCtrlBtnsInstructions = function () {
   global.ResetSectionVideos();
   global.DeactivateActivateSectionText();
   global.DeactivateActivateSectionImage();
-  global.PlaySectionVideo("instructions", instructions.currentInstructionVid);
+  global.PlaySectionVideo(
+    "instructions",
+    instructions.currentInstructionVid,
+    true
+  );
   global.DeactivateActivateCurrentCtrlButtons(
     "instructions",
     instructions.currentInstructionVid
@@ -192,6 +216,9 @@ const init = function () {
   components.AddHandlerTextImgBtn(MainTextImgBtn);
   components.AddHandlerCtrlBtnWrapperComponents(MainCtrlBtnsComponents);
   instructions.AddHandlerVidsInstructionsEnds(MainInstructionsVidsEnds);
+  instructions.AddHandlerVidsInstructionsPause(
+    MainVidsInstructionsPauseUnpause
+  );
   instructions.AddHandlerCtrlBtnWrapperInstructions(MainCtrlBtnsInstructions);
   global.ctrlBtnWrapper.classList.remove("active");
 };

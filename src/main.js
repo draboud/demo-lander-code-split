@@ -15,7 +15,6 @@ import navigation from "./0_navigation";
 import features from "./1_features";
 import components from "./2_components";
 import instructions from "./3_instructions";
-
 //.......................................................................
 //.......................................................................
 //NAVIGATION
@@ -26,13 +25,17 @@ const MainAllCtrlBtnsMouseLeave = function (ctrlBtn) {
   ctrlBtn.classList.remove("hovered");
 };
 const MainAllNavLinks = function (navLink) {
-  clearTimeout(features.featureVidTimer);
   global.SetActiveSectionName(navLink.classList[1]);
   global.SetActiveSection(
     document.querySelector(`.section_${global.activeSectionName}`)
   );
   navigation.ActivateNavLink();
+  if (components.activeDatasheet)
+    components.activeDatasheet
+      .querySelector(".comp-data-body-wrap")
+      .scroll(0, 0);
   navigation.ResetSectionSpecial();
+  clearTimeout(features.featureVidTimer);
   global.ResetSectionVideos("all");
   global.DeactivateActivateSectionText("main");
   global.ActivateSection();
@@ -64,6 +67,7 @@ const MainVidsComponentDatasheetsEnds = function () {
   components.DisplayDataSheet();
 };
 const MainBackBtn = function () {
+  components.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0, 0);
   global.ResetSectionVideos("components", "datasheets");
   global.DeactivateActivateSectionImage(global.currentViewName);
   components.dimmer.classList.remove("active");
@@ -189,12 +193,11 @@ const init = function () {
   components.AddHandlerCtrlBtnWrapperComponents(MainCtrlBtnsComponents);
   instructions.AddHandlerVidsInstructionsEnds(MainInstructionsVidsEnds);
   instructions.AddHandlerCtrlBtnWrapperInstructions(MainCtrlBtnsInstructions);
-  //.......................................................................
-  //.......................................................................
-  //LOADER
-  // global.navBar.style.display = "none";
   global.ctrlBtnWrapper.classList.remove("active");
 };
+//.......................................................................
+//.......................................................................
+//LOADER
 init();
 window.addEventListener("load", function () {
   global.navLinkInstructions.click();
@@ -202,7 +205,6 @@ window.addEventListener("load", function () {
   global.navLinkFeatures.click();
   this.setTimeout(function () {
     global.navBar.classList.add("active");
-    // global.navBar.style.display = "block";
     global.ctrlBtnWrapper.classList.add("active");
     global.SetInitializing(false);
     global.loader.classList.remove("active");

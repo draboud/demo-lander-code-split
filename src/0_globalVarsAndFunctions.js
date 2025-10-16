@@ -105,7 +105,6 @@ export const ResetSectionVideos = function (
         el.currentTime = 0;
         el.pause();
       });
-    // }
   }
 };
 export const DeactivateActivateSectionText = function (textName, textIndex) {

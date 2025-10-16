@@ -72,8 +72,8 @@ class initialize {
         components.textImgBtnLabel = "image";
         global.DeactivateActivateCtrlBtnRange(
           "components",
-          global.GetStartBtnRange(),
-          global.GetEndBtnRange()
+          global.startBtnRange,
+          global.endBtnRange
         );
         break;
       case "instructions":

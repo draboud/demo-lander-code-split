@@ -1,4 +1,4 @@
-console.log("tester Oct 16");
+// console.log("tester Oct 16");
 //.......................................................................
 //.......................................................................
 //IMPORTS
@@ -11,7 +11,7 @@ import {
   PAUSE_BETWEEN_INSTRUCTION_VIDS,
 } from "./0_config";
 import * as global from "./0_globalVarsAndFunctions";
-import initialize from "./initialize";
+import initialize from "./0_initialize";
 import features from "./1_features";
 import components from "./2_components";
 import instructions from "./3_instructions";
@@ -64,7 +64,7 @@ const MainVidsComponentDatasheetsEnds = function () {
 };
 const MainBackBtn = function () {
   global.ResetSectionVideos("components", "datasheets");
-  global.DeactivateActivateSectionImage(components.currentViewName);
+  global.DeactivateActivateSectionImage(global.currentViewName);
   components.dimmer.classList.remove("active");
   components.ActivateDeactivateDatasheetTextAndButtons(false);
   global.DeactivateActivateSectionText("main");
@@ -72,6 +72,7 @@ const MainBackBtn = function () {
   global.ActivateSectionButtons();
 };
 const MainCtrlBtnsComponents = function () {
+  components.optsMenu.classList.remove("active");
   global.DeactivateActivateSectionText();
   global.DeactivateActivateSectionImage();
   global.ResetSectionVideos();
@@ -82,25 +83,21 @@ const MainCtrlBtnsComponents = function () {
 const MainMenuBtn = function () {
   components.optsMenu.classList.add("active");
 };
-const MainOptsMenuBtn = function (clickedBtnContent) {
+const MainMenuOptBtn = function (clickedBtnContent) {
   components.optsMenu.classList.remove("active");
-  if (global.GetCurrentViewName() !== clickedBtnContent) {
+  if (global.currentViewName !== clickedBtnContent) {
     global.SetCurrentViewName(clickedBtnContent);
-    components.optsMenuBtn.textContent = global.GetCurrentViewName();
-    global.SetCtrlBtnIndex("");
+    components.optsMenuBtn.textContent = global.currentViewName;
     global.DeactivateActivateSectionText();
     global.DeactivateActivateSectionImage();
     global.ResetSectionVideos();
-    global.ActivateSectionVideo(global.GetCurrentViewName());
-    global.PlaySectionVideo(global.GetCurrentViewName());
+    global.ActivateSectionVideo(global.currentViewName);
+    global.PlaySectionVideo(global.currentViewName);
     components.ctrlBtnWrapperComponents.classList.remove("active");
   }
 };
 const MainComponentVidsViewsEnds = function () {
-  global.DeactivateActivateSectionImage(
-    components.currentViewName,
-    global.ctrlBtnIndex
-  );
+  global.DeactivateActivateSectionImage(global.currentViewName);
   global.DeactivateActivateSectionText("main");
   components.ctrlBtnWrapperComponents
     .querySelectorAll(".ctrl-btn")
@@ -156,7 +153,6 @@ const MainInstructionsVidsEnds = function () {
 };
 const MainCtrlBtnsInstructions = function () {
   clearTimeout(instructions.instructionVidTimer);
-  // global.SetInstructionVidTimer(null);
   instructions.instructionVidTimer = null;
   global.FlashBlackout(BLACKOUT_STANDARD);
   global.ActivateSectionVideo(
@@ -185,7 +181,7 @@ const init = function () {
   );
   features.AddHandlerCtrlBtnWrapperFeatures(MainCtrlBtnsFeatures);
   components.AddHandlerMenuBtn(MainMenuBtn);
-  components.AddHandlerOptsMenu(MainOptsMenuBtn);
+  components.AddHandlerMenuOptBtn(MainMenuOptBtn);
   components.AddHandlerBackBtn(MainBackBtn);
   components.AddHandlerVidsComponentViewsEnds(MainComponentVidsViewsEnds);
   components.AddHandlerTextImgBtn(MainTextImgBtn);
@@ -195,8 +191,6 @@ const init = function () {
   //.......................................................................
   //.......................................................................
   //LOADER
-  global.blackout.classList.remove("off");
-  global.loader.classList.add("active");
   global.navBar.style.display = "none";
   global.ctrlBtnWrapper.classList.remove("active");
 };

@@ -56,7 +56,7 @@ class components {
       handler();
     });
   };
-  AddHandlerOptsMenu = function (handler) {
+  AddHandlerMenuOptBtn = function (handler) {
     this.optsMenu.addEventListener("click", function (e) {
       const clicked = e.target.closest(".opts-menu_link");
       const clickedBtnContent = clicked.textContent;

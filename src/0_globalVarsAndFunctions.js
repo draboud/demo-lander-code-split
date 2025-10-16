@@ -49,44 +49,23 @@ export let endBtnRange;
 //............................................................
 //............................................................
 //GETTERS & SETTERS
-export function GetInitializing() {
-  return initializing;
-}
 export function SetInitializing(newValue) {
   initializing = newValue;
-}
-export function GetCtrlBtnIndex() {
-  return ctrlBtnIndex;
 }
 export function SetCtrlBtnIndex(newValue) {
   ctrlBtnIndex = newValue;
 }
-export function GetActiveSection() {
-  return activeSection;
-}
 export function SetActiveSection(newValue) {
   activeSection = newValue;
-}
-export function GetActiveSectionName() {
-  return activeSectionName;
 }
 export function SetActiveSectionName(newValue) {
   activeSectionName = newValue;
 }
-export function GetCurrentViewName() {
-  return currentViewName;
-}
 export function SetCurrentViewName(newValue) {
   currentViewName = newValue;
 }
-export function GetStartBtnRange() {
-  return startBtnRange;
-}
 export function SetStartBtnRange(newValue) {
   startBtnRange = newValue;
-}
-export function GetEndBtnRange() {
-  return endBtnRange;
 }
 export function SetEndBtnRange(newValue) {
   endBtnRange = newValue;

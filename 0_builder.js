@@ -1,9 +1,9 @@
 require("esbuild")
   .build({
-    entryPoints: ["script.js"],
+    entryPoints: ["src/main.js"],
     bundle: true,
     minify: true,
     sourcemap: true,
-    outfile: "dist/script.js",
+    outfile: "dist/main.js",
   })
   .catch(() => process.exit(1));

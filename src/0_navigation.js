@@ -14,7 +14,7 @@ import instructions from "./3_instructions";
 //.......................................................................
 //.......................................................................
 //CLASS
-class initialize {
+class navigation {
   AddHandlerAllCtrlBtnsMouseEnter = function (handler) {
     global.allCtrlBtns.forEach(function (el) {
       el.addEventListener("mouseenter", function () {
@@ -85,4 +85,4 @@ class initialize {
     }
   };
 }
-export default new initialize();
+export default new navigation();

@@ -11,14 +11,14 @@ import {
   PAUSE_BETWEEN_INSTRUCTION_VIDS,
 } from "./0_config";
 import * as global from "./0_globalVarsAndFunctions";
-import initialize from "./0_initialize";
+import navigation from "./0_navigation";
 import features from "./1_features";
 import components from "./2_components";
 import instructions from "./3_instructions";
 
 //.......................................................................
 //.......................................................................
-//INITIALIZE
+//NAVIGATION
 const MainAllCtrlBtnsMouseEnter = function (ctrlBtn) {
   ctrlBtn.classList.add("hovered");
 };
@@ -26,12 +26,13 @@ const MainAllCtrlBtnsMouseLeave = function (ctrlBtn) {
   ctrlBtn.classList.remove("hovered");
 };
 const MainAllNavLinks = function (navLink) {
+  clearTimeout(features.featureVidTimer);
   global.SetActiveSectionName(navLink.classList[1]);
   global.SetActiveSection(
     document.querySelector(`.section_${global.activeSectionName}`)
   );
-  initialize.ActivateNavLink();
-  initialize.ResetSectionSpecial();
+  navigation.ActivateNavLink();
+  navigation.ResetSectionSpecial();
   global.ResetSectionVideos("all");
   global.DeactivateActivateSectionText("main");
   global.ActivateSection();
@@ -52,7 +53,7 @@ const MainCtrlBtnsFeatures = function () {
   global.ActivateSectionVideo("features", global.ctrlBtnIndex);
   global.PlaySectionVideo("features", global.ctrlBtnIndex);
   global.DeactivateActivateCurrentCtrlButtons("features", global.ctrlBtnIndex);
-  setTimeout(function () {
+  features.featureVidTimer = setTimeout(function () {
     global.DeactivateActivateSectionText("feature", global.ctrlBtnIndex);
   }, DELAY_BEFORE_FEATURE_TEXT);
 };
@@ -170,11 +171,11 @@ const MainCtrlBtnsInstructions = function () {
 };
 //.......................................................................
 //.......................................................................
-//INITIALIZE
+//NAVIGATION
 const init = function () {
-  initialize.AddHandlerAllCtrlBtnsMouseEnter(MainAllCtrlBtnsMouseEnter);
-  initialize.AddHandlerAllCtrlBtnsMouseLeave(MainAllCtrlBtnsMouseLeave);
-  initialize.AddHandlerAllNavLinks(MainAllNavLinks);
+  navigation.AddHandlerAllCtrlBtnsMouseEnter(MainAllCtrlBtnsMouseEnter);
+  navigation.AddHandlerAllCtrlBtnsMouseLeave(MainAllCtrlBtnsMouseLeave);
+  navigation.AddHandlerAllNavLinks(MainAllNavLinks);
   features.AddHandlerVidsFeaturesEnd(MainFeaturesVidsEnds);
   components.AddHandlerVidsComponentDatasheetsEnds(
     MainVidsComponentDatasheetsEnds
@@ -191,7 +192,7 @@ const init = function () {
   //.......................................................................
   //.......................................................................
   //LOADER
-  global.navBar.style.display = "none";
+  // global.navBar.style.display = "none";
   global.ctrlBtnWrapper.classList.remove("active");
 };
 init();
@@ -200,7 +201,8 @@ window.addEventListener("load", function () {
   global.navLinkComponents.click();
   global.navLinkFeatures.click();
   this.setTimeout(function () {
-    global.navBar.style.display = "block";
+    global.navBar.classList.add("active");
+    // global.navBar.style.display = "block";
     global.ctrlBtnWrapper.classList.add("active");
     global.SetInitializing(false);
     global.loader.classList.remove("active");

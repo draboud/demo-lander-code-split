@@ -13,6 +13,7 @@ class features {
   allVidsFeatures = global.sectionFeatures.querySelectorAll(".vid");
   allCtrlBtnsFeatures =
     global.ctrlBtnWrapper.querySelectorAll(".ctrl-btn.features");
+  featureVidTimer;
   //............................................................
   //............................................................
   //FUNCTIONS

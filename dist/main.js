@@ -473,7 +473,7 @@
   var navigation_default = new navigation();
 
   // src/main.js
-  console.log("pause");
+  console.log("main");
   var MainAllCtrlBtnsMouseEnter = function(ctrlBtn) {
     ctrlBtn.classList.add("hovered");
   };

@@ -7,6 +7,8 @@ class instructions {
   //DEFINITIONS
   instructionsSection = document.querySelector(".section_instructions");
   allVidsInstructions = global.sectionInstructions.querySelectorAll(".vid");
+  allVidsInstructionsMobileP =
+    global.sectionInstructions.querySelectorAll(".vid-mobile-p");
   allVidWrappersInstuctions =
     global.sectionInstructions.querySelectorAll(".video-wrap");
   allCtrlBtnsInstructions = global.sectionInstructions.querySelectorAll(

@@ -1,4 +1,4 @@
-console.log("main");
+// console.log("main");
 //.......................................................................
 //.......................................................................
 //IMPORTS
@@ -169,9 +169,15 @@ const MainVidsInstructionsPauseUnpause = function () {
     instructions.allVidsInstructions[
       instructions.currentInstructionVid
     ].pause();
+    instructions.allVidsInstructionsMobileP[
+      instructions.currentInstructionVid
+    ].pause();
   } else {
     global.pauseWrapper.classList.remove("active");
     instructions.allVidsInstructions[instructions.currentInstructionVid].play();
+    instructions.allVidsInstructionsMobileP[
+      instructions.currentInstructionVid
+    ].play();
   }
 };
 const MainCtrlBtnsInstructions = function () {

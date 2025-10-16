@@ -1,2 +1,627 @@
-(()=>{var U=document.querySelector(".nav_component"),G=document.querySelector(".nav_menu_link.features"),$=document.querySelector(".nav_menu_link.components"),K=document.querySelector(".nav_menu_link.instructions"),N=document.querySelectorAll(".nav_menu_link"),X=document.querySelector(".loader-text"),V=document.querySelector(".blackout"),q=document.querySelector(".section_features"),d=document.querySelector(".section_components"),h=document.querySelector(".section_instructions"),et=[q,d,h],l=document.querySelector(".ctrl-btn-wrapper"),R=document.querySelectorAll(".ctrl-btn"),nt=document.querySelectorAll(".section-wrap-btns"),k=l.querySelector(".ctrl-btn.back"),z=!0,m=document.querySelector(".section_features"),f=m.classList[0].slice(8),s="view-a",p,T,x;function Y(e){z=e}function D(e){p=e}function j(e){m=e}function J(e){f=e}function Q(e){s=e}function E(e){T=e}function C(e){x=e}var B=function(e,t,n){e==="all"?document.querySelectorAll(".vid,.vid-mobile-p").forEach(function(o){o.currentTime=0,o.pause()}):e?e&&!t?document.querySelector(`.section_${e}`).querySelectorAll(".vid,.vid-mobile-p").forEach(function(o){o.currentTime=0,o.pause()}):e&&t&&document.querySelector(`.section_${e}`).querySelector(`.section-wrap-vids.${t}`).querySelectorAll(".vid,.vid-mobile-p").forEach(function(o){o.currentTime=0,o.pause()}):m.querySelectorAll(".vid,.vid-mobile-p").forEach(function(o){o.currentTime=0,o.pause()})},u=function(e,t){m.querySelectorAll(".section-wrap-text").forEach(function(n){n.classList.remove("active"),e&&n.classList.contains(e)&&(n.classList.add("active"),(t||t===0)&&n.querySelectorAll(".text-wrapper").forEach(function(o,i){o.classList.remove("active"),i===t&&o.classList.add("active")}))})},w=function(){et.forEach(function(e){e.classList.remove("active"),e.classList[0].slice(8)===f&&(e.classList.add("active"),z||g(50))})},M=function(){nt.forEach(function(e){e.classList.remove("active")}),l.querySelector(`.section-wrap-btns.${f}`).classList.add("active"),k.classList.remove("active")},g=function(e){V.classList.remove("off"),setTimeout(function(){V.classList.add("off")},e)},r=function(e,t){m.querySelectorAll(".section-wrap-imgs").forEach(function(n){n.classList.remove("active"),e&&n.classList.contains(e)&&(n.classList.add("active"),(t||t===0)&&(n.querySelectorAll(".section-img").forEach(function(o,i){o.classList.remove("active"),i===t&&o.classList.add("active")}),n.querySelectorAll(".section-img.mobile-p").forEach(function(o,i){o.classList.remove("active"),i===t&&o.classList.add("active")})))})},O=function(e){e?document.querySelector(`.section_${e}`).querySelectorAll(".video-wrap").forEach(function(t){t.classList.remove("active")}):m.querySelectorAll(".video-wrap").forEach(function(t){t.classList.remove("active")})},S=function(e,t){O(),t||(t=0),m.querySelector(`.section-wrap-vids.${e}`).querySelectorAll(".video-wrap")[t].classList.add("active"),m.querySelector(`.section-wrap-vids.${e}`).querySelectorAll(".video-wrap.mobile-p")[t].classList.add("active")},A=function(e,t){t||(t=0),m.querySelector(`.section-wrap-vids.${e}`).querySelectorAll(".video-wrap")[t].querySelector(".vid").play(),m.querySelector(`.section-wrap-vids.${e}`).querySelectorAll(".video-wrap.mobile-p")[t].querySelector(".vid-mobile-p").play()},v=function(e,t){document.querySelectorAll(`.ctrl-btn.${e}`).forEach(function(n,o){n.classList.remove("current","hovered"),(t||t===0)&&o===t&&n.classList.add("current")})},I=function(e,t,n){l.querySelector(`.section-wrap-btns.${e}`).querySelectorAll(".ctrl-btn").forEach(function(o,i){o.classList.remove("active"),i>=t&&i<=n&&o.classList.add("active")})};var F=class{allVidsFeatures=q.querySelectorAll(".vid");allCtrlBtnsFeatures=l.querySelectorAll(".ctrl-btn.features");featureVidTimer;FeaturesFunction=function(){console.log(this.allVidsFeatures)};AddHandlerVidsFeaturesEnd=function(t){this.allVidsFeatures.forEach(function(n){n.addEventListener("ended",function(){t()})})};AddHandlerCtrlBtnWrapperFeatures=function(t){l.addEventListener("click",function(n){let o=n.target.closest(".ctrl-btn.features");if(!o)return;let i=o.parentElement;D(Array.prototype.indexOf.call(i.children,o)),t()})};ResetToFeaturesMainScreen=function(){setTimeout(function(){g(50),r(),u("main"),S("main"),A("main"),v("features",!1)},1500)}},L=new F;var W=class{componentSection=document.querySelector(".section_datasheets");allVidsComponentViews=[d.querySelector(".section-wrap-vids.view-a").querySelector(".vid"),d.querySelector(".section-wrap-vids.view-b").querySelector(".vid")];allVidsComponentDatasheets=d.querySelector(".section-wrap-vids.datasheets").querySelectorAll(".vid");datasheetsAllWrapper=d.querySelector(".section-wrap-comp-data");allDatasheetWraps=d.querySelectorAll(".comp-data-wrap");ctrlBtnWrapperComponents=l.querySelector(".section-wrap-btns.components");optsMenuBtn=d.querySelector(".opts-menu_btn");optsMenu=d.querySelector(".opts-menu");dimmer=d.querySelector(".dimmer");textImgBtn=d.querySelector(".text-img-btn");textImgBtnLabel="image";allCtrlBtnsComponents=l.querySelectorAll(".ctrl-btn.components");activeDatasheet;ComponentsFunction=function(){console.log("inside components function")};AddHandlerVidsComponentDatasheetsEnds=function(t){this.allVidsComponentDatasheets.forEach(function(n){n.addEventListener("ended",function(){t()})})};AddHandlerMenuBtn=function(t){this.optsMenuBtn.addEventListener("click",function(){t()})};AddHandlerMenuOptBtn=function(t){this.optsMenu.addEventListener("click",function(n){let o=n.target.closest(".opts-menu_link"),i=o.textContent;o&&t(i)})};AddHandlerVidsComponentViewsEnds=function(t){this.allVidsComponentViews.forEach(n=>{n.addEventListener("ended",()=>{s==="view-a"?(E(0),C(5)):(E(6),C(11)),t()})})};AddHandlerTextImgBtn=function(t){this.textImgBtn.addEventListener("click",function(){t()})};AddHandlerCtrlBtnWrapperComponents=function(t){l.addEventListener("click",function(n){let o=n.target.closest(".ctrl-btn.components");if(!o)return;let i=o.parentElement;D(Array.prototype.indexOf.call(i.children,o)),t()})};AddHandlerBackBtn=function(t){l.addEventListener("click",function(n){n.target.closest(".ctrl-btn.back")&&t()})};DisplayDataSheet=function(){r("comps",p),this.dimmer.classList.add("active"),this.ActivateDeactivateDatasheetTextAndButtons(!0)};ActivateDeactivateDatasheetTextAndButtons=function(t){this.textImgBtn.classList.toggle("active",t),this.datasheetsAllWrapper.classList.toggle("active",t),this.allDatasheetWraps.forEach((n,o)=>{n.classList.remove("active"),n.querySelector(".comp-data-body-wrap").classList.add("active"),t&&o===p&&(n.classList.add("active"),this.activeDatasheet=n)}),k.classList.toggle("active",t)}},a=new W;var H=class{instructionsSection=document.querySelector(".section_instructions");allVidsInstructions=h.querySelectorAll(".vid");allCtrlBtnsInstructions=h.querySelectorAll(".ctrl-btn.instructions");currentInstructionVid;instructionVidTimer;AddHandlerVidsInstructionsEnds=function(t){this.allVidsInstructions.forEach(function(n){n.addEventListener("ended",function(){n.classList.remove("active"),n.pause(),t()})})};AddHandlerCtrlBtnWrapperInstructions=function(t){l.addEventListener("click",n=>{let o=n.target.closest(".ctrl-btn.instructions");if(!o)return;let i=o.parentElement;this.currentInstructionVid=Array.prototype.indexOf.call(i.children,o),t()})};ResetToInstructionsMainScreen=function(){g(150),O(),u("main"),r("main"),v("instructions",!1)}},c=new H;var P=class{AddHandlerAllCtrlBtnsMouseEnter=function(t){R.forEach(function(n){n.addEventListener("mouseenter",function(){t(n)})})};AddHandlerAllCtrlBtnsMouseLeave=function(t){R.forEach(function(n){n.addEventListener("mouseleave",function(){t(n)})})};AddHandlerAllNavLinks=function(t){N.forEach(function(n){n.addEventListener("click",function(o){let i=o.target.closest(".nav_menu_link");i&&t(i)})})};ActivateNavLink=function(){N.forEach(function(t){t.classList.remove("current"),t.classList.contains(f)&&t.classList.add("current")})};ResetSectionSpecial=function(){switch(f){case"features":S("main"),v("features");break;case"components":a.optsMenu.classList.remove("active"),r(s),[a.datasheetsAllWrapper,...a.allDatasheetWraps].forEach(function(t){t.classList.remove("active")}),s==="view-a"?(E(0),C(5)):(E(6),C(11)),a.dimmer.classList.remove("active"),a.textImgBtn.textContent="image",a.textImgBtnLabel="image",I("components",T,x);break;case"instructions":clearTimeout(c.instructionVidTimer),c.instructionVidTimer=null,r("main"),v("instructions");break}}},_=new P;var pt=function(e){e.classList.add("hovered")},vt=function(e){e.classList.remove("hovered")},mt=function(e){J(e.classList[1]),j(document.querySelector(`.section_${f}`)),_.ActivateNavLink(),a.activeDatasheet&&a.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0,0),_.ResetSectionSpecial(),clearTimeout(L.featureVidTimer),B("all"),u("main"),w(),M(),f==="features"&&A("main")},St=function(){L.ResetToFeaturesMainScreen()},ft=function(){g(50),u(),r(),B(),S("features",p),A("features",p),v("features",p),L.featureVidTimer=setTimeout(function(){u("feature",p)},1e3)},gt=function(){a.DisplayDataSheet()},At=function(){a.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0,0),B("components","datasheets"),r(s),a.dimmer.classList.remove("active"),a.ActivateDeactivateDatasheetTextAndButtons(!1),u("main"),w(),M()},bt=function(){a.optsMenu.classList.remove("active"),u(),r(),B(),S("datasheets",p),A("datasheets",p),a.ctrlBtnWrapperComponents.classList.remove("active")},Bt=function(){a.optsMenu.classList.add("active")},Et=function(e){a.optsMenu.classList.remove("active"),s!==e&&(Q(e),a.optsMenuBtn.textContent=s,u(),r(),B(),S(s),A(s),a.ctrlBtnWrapperComponents.classList.remove("active"))},Ct=function(){r(s),u("main"),a.ctrlBtnWrapperComponents.querySelectorAll(".ctrl-btn").forEach(function(e){e.classList.remove("active")}),I("components",T,x),a.ctrlBtnWrapperComponents.classList.add("active")},Lt=function(){a.textImgBtnLabel==="image"?a.textImgBtn.textContent="text":a.textImgBtn.textContent="image",a.textImgBtnLabel=a.textImgBtn.textContent,a.activeDatasheet.querySelector(".comp-data-body-wrap").classList.toggle("active"),a.dimmer.classList.toggle("active")},_t=function(){c.instructionVidTimer=setTimeout(function(){if(c.currentInstructionVid+=1,c.currentInstructionVid===4&&!0)c.currentInstructionVid=0;else if(c.currentInstructionVid===4&&!!0){c.ResetToInstructionsMainScreen();return}g(50),S("instructions",c.currentInstructionVid),A("instructions",c.currentInstructionVid),v("instructions",c.currentInstructionVid)},1500)},Tt=function(){clearTimeout(c.instructionVidTimer),c.instructionVidTimer=null,g(50),S("instructions",c.currentInstructionVid),B(),u(),r(),A("instructions",c.currentInstructionVid),v("instructions",c.currentInstructionVid)},xt=function(){_.AddHandlerAllCtrlBtnsMouseEnter(pt),_.AddHandlerAllCtrlBtnsMouseLeave(vt),_.AddHandlerAllNavLinks(mt),L.AddHandlerVidsFeaturesEnd(St),a.AddHandlerVidsComponentDatasheetsEnds(gt),L.AddHandlerCtrlBtnWrapperFeatures(ft),a.AddHandlerMenuBtn(Bt),a.AddHandlerMenuOptBtn(Et),a.AddHandlerBackBtn(At),a.AddHandlerVidsComponentViewsEnds(Ct),a.AddHandlerTextImgBtn(Lt),a.AddHandlerCtrlBtnWrapperComponents(bt),c.AddHandlerVidsInstructionsEnds(_t),c.AddHandlerCtrlBtnWrapperInstructions(Tt),l.classList.remove("active")};xt();window.addEventListener("load",function(){K.click(),$.click(),G.click(),this.setTimeout(function(){U.classList.add("active"),l.classList.add("active"),Y(!1),X.classList.remove("active"),V.classList.add("off")},2500)});})();
-//# sourceMappingURL=main.js.map
+(() => {
+  // src/0_config.js
+  var BLACKOUT_STANDARD = 50;
+  var BLACKOUT_EXTRA = 150;
+  var BLACKOUT_INIT = 2500;
+  var DELAY_BEFORE_FEATURE_TEXT = 1e3;
+  var PAUSE_AFTER_FEATURE_END = 1500;
+  var NO_OF_INSTRUCTION_VIDS = 4;
+  var PAUSE_BETWEEN_INSTRUCTION_VIDS = 1500;
+  var INSTRUCTION_VIDS_LOOPING = true;
+  var COMP_BTNS_START_RANGE_A = 0;
+  var COMP_BTNS_END_RANGE_A = 5;
+  var COMP_BTNS_START_RANGE_B = 6;
+  var COMP_BTNS_END_RANGE_B = 11;
+
+  // src/0_globalVarsAndFunctions.js
+  var navBar = document.querySelector(".nav_component");
+  var navLinkFeatures = document.querySelector(
+    ".nav_menu_link.features"
+  );
+  var navLinkComponents = document.querySelector(
+    ".nav_menu_link.components"
+  );
+  var navLinkInstructions = document.querySelector(
+    ".nav_menu_link.instructions"
+  );
+  var allNavLinks = document.querySelectorAll(".nav_menu_link");
+  var loader = document.querySelector(".loader-text");
+  var blackout = document.querySelector(".blackout");
+  var sectionFeatures = document.querySelector(".section_features");
+  var sectionComponents = document.querySelector(".section_components");
+  var sectionInstructions = document.querySelector(
+    ".section_instructions"
+  );
+  var allSections = [
+    sectionFeatures,
+    sectionComponents,
+    sectionInstructions
+  ];
+  var ctrlBtnWrapper = document.querySelector(".ctrl-btn-wrapper");
+  var allCtrlBtns = document.querySelectorAll(".ctrl-btn");
+  var allSectionBtnWrappers = document.querySelectorAll(".section-wrap-btns");
+  var backBtn = ctrlBtnWrapper.querySelector(".ctrl-btn.back");
+  var initializing = true;
+  var activeSection = document.querySelector(".section_features");
+  var activeSectionName = activeSection.classList[0].slice(8);
+  var currentViewName = "view-a";
+  var ctrlBtnIndex;
+  var startBtnRange;
+  var endBtnRange;
+  function SetInitializing(newValue) {
+    initializing = newValue;
+  }
+  function SetCtrlBtnIndex(newValue) {
+    ctrlBtnIndex = newValue;
+  }
+  function SetActiveSection(newValue) {
+    activeSection = newValue;
+  }
+  function SetActiveSectionName(newValue) {
+    activeSectionName = newValue;
+  }
+  function SetCurrentViewName(newValue) {
+    currentViewName = newValue;
+  }
+  function SetStartBtnRange(newValue) {
+    startBtnRange = newValue;
+  }
+  function SetEndBtnRange(newValue) {
+    endBtnRange = newValue;
+  }
+  var ResetSectionVideos = function(sectionName, subsectionName, vidIndex) {
+    if (sectionName === "all") {
+      document.querySelectorAll(`.vid,.vid-mobile-p`).forEach(function(el) {
+        el.currentTime = 0;
+        el.pause();
+      });
+    } else if (!sectionName) {
+      activeSection.querySelectorAll(`.vid,.vid-mobile-p`).forEach(function(el) {
+        el.currentTime = 0;
+        el.pause();
+      });
+    } else if (sectionName && !subsectionName) {
+      document.querySelector(`.section_${sectionName}`).querySelectorAll(`.vid,.vid-mobile-p`).forEach(function(el) {
+        el.currentTime = 0;
+        el.pause();
+      });
+    } else if (sectionName && subsectionName) {
+      document.querySelector(`.section_${sectionName}`).querySelector(`.section-wrap-vids.${subsectionName}`).querySelectorAll(`.vid,.vid-mobile-p`).forEach(function(el) {
+        el.currentTime = 0;
+        el.pause();
+      });
+    }
+  };
+  var DeactivateActivateSectionText = function(textName, textIndex) {
+    activeSection.querySelectorAll(".section-wrap-text").forEach(function(el) {
+      el.classList.remove("active");
+      if (textName && el.classList.contains(textName)) {
+        el.classList.add("active");
+        if (textIndex || textIndex === 0) {
+          el.querySelectorAll(".text-wrapper").forEach(function(el2, index) {
+            el2.classList.remove("active");
+            if (index === textIndex) el2.classList.add("active");
+          });
+        }
+      }
+    });
+  };
+  var ActivateSection = function() {
+    allSections.forEach(function(el) {
+      el.classList.remove("active");
+      if (el.classList[0].slice(8) === activeSectionName) {
+        el.classList.add("active");
+        if (!initializing) FlashBlackout(BLACKOUT_STANDARD);
+      }
+    });
+  };
+  var ActivateSectionButtons = function() {
+    allSectionBtnWrappers.forEach(function(el) {
+      el.classList.remove("active");
+    });
+    ctrlBtnWrapper.querySelector(`.section-wrap-btns.${activeSectionName}`).classList.add("active");
+    backBtn.classList.remove("active");
+  };
+  var FlashBlackout = function(timerVariable) {
+    blackout.classList.remove("off");
+    setTimeout(function() {
+      blackout.classList.add("off");
+    }, timerVariable);
+  };
+  var DeactivateActivateSectionImage = function(imgName, imgIndex) {
+    activeSection.querySelectorAll(".section-wrap-imgs").forEach(function(el) {
+      el.classList.remove("active");
+      if (imgName && el.classList.contains(imgName)) {
+        el.classList.add("active");
+        if (imgIndex || imgIndex === 0) {
+          el.querySelectorAll(".section-img").forEach(function(el2, index) {
+            el2.classList.remove("active");
+            if (index === imgIndex) el2.classList.add("active");
+          });
+          el.querySelectorAll(".section-img.mobile-p").forEach(function(el2, index) {
+            el2.classList.remove("active");
+            if (index === imgIndex) el2.classList.add("active");
+          });
+        }
+      }
+    });
+  };
+  var DeactivateSectionVideos = function(sectionName) {
+    if (!sectionName) {
+      activeSection.querySelectorAll(".video-wrap").forEach(function(el) {
+        el.classList.remove("active");
+      });
+    } else {
+      document.querySelector(`.section_${sectionName}`).querySelectorAll(".video-wrap").forEach(function(el) {
+        el.classList.remove("active");
+      });
+    }
+  };
+  var ActivateSectionVideo = function(vidName, vidIndex) {
+    DeactivateSectionVideos();
+    if (!vidIndex) vidIndex = 0;
+    activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap")[vidIndex].classList.add("active");
+    activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap.mobile-p")[vidIndex].classList.add("active");
+  };
+  var PlaySectionVideo = function(vidName, vidIndex) {
+    if (!vidIndex) vidIndex = 0;
+    activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap")[vidIndex].querySelector(".vid").play();
+    activeSection.querySelector(`.section-wrap-vids.${vidName}`).querySelectorAll(".video-wrap.mobile-p")[vidIndex].querySelector(".vid-mobile-p").play();
+  };
+  var DeactivateActivateCurrentCtrlButtons = function(sectionName, btnIndex) {
+    document.querySelectorAll(`.ctrl-btn.${sectionName}`).forEach(function(el, index) {
+      el.classList.remove("current", "hovered");
+      if ((btnIndex || btnIndex === 0) && index === btnIndex)
+        el.classList.add("current");
+    });
+  };
+  var DeactivateActivateCtrlBtnRange = function(btnsName, startIndex, endIndex) {
+    ctrlBtnWrapper.querySelector(`.section-wrap-btns.${btnsName}`).querySelectorAll(".ctrl-btn").forEach(function(el, index) {
+      el.classList.remove("active");
+      if (index >= startIndex && index <= endIndex) el.classList.add("active");
+    });
+  };
+
+  // src/1_features.js
+  var features = class {
+    //............................................................
+    //............................................................
+    //DEFINITIONS
+    allVidsFeatures = sectionFeatures.querySelectorAll(".vid");
+    allCtrlBtnsFeatures = ctrlBtnWrapper.querySelectorAll(".ctrl-btn.features");
+    featureVidTimer;
+    //............................................................
+    //............................................................
+    //FUNCTIONS
+    FeaturesFunction = function() {
+      console.log(this.allVidsFeatures);
+    };
+    AddHandlerVidsFeaturesEnd = function(handler) {
+      this.allVidsFeatures.forEach(function(el) {
+        el.addEventListener("ended", function() {
+          handler();
+        });
+      });
+    };
+    AddHandlerCtrlBtnWrapperFeatures = function(handler) {
+      ctrlBtnWrapper.addEventListener("click", function(e) {
+        const clicked = e.target.closest(".ctrl-btn.features");
+        if (!clicked) return;
+        const parentElement = clicked.parentElement;
+        SetCtrlBtnIndex(
+          Array.prototype.indexOf.call(parentElement.children, clicked)
+        );
+        handler();
+      });
+    };
+    ResetToFeaturesMainScreen = function() {
+      setTimeout(function() {
+        FlashBlackout(BLACKOUT_STANDARD);
+        DeactivateActivateSectionImage();
+        DeactivateActivateSectionText("main");
+        ActivateSectionVideo("main");
+        PlaySectionVideo("main");
+        DeactivateActivateCurrentCtrlButtons("features", false);
+      }, PAUSE_AFTER_FEATURE_END);
+    };
+  };
+  var features_default = new features();
+
+  // src/2_components.js
+  var components = class {
+    //............................................................
+    //............................................................
+    //DEFINITIONS
+    componentSection = document.querySelector(".section_datasheets");
+    allVidsComponentViews = [
+      sectionComponents.querySelector(".section-wrap-vids.view-a").querySelector(".vid"),
+      sectionComponents.querySelector(".section-wrap-vids.view-b").querySelector(".vid")
+    ];
+    allVidsComponentDatasheets = sectionComponents.querySelector(".section-wrap-vids.datasheets").querySelectorAll(".vid");
+    datasheetsAllWrapper = sectionComponents.querySelector(
+      ".section-wrap-comp-data"
+    );
+    allDatasheetWraps = sectionComponents.querySelectorAll(".comp-data-wrap");
+    ctrlBtnWrapperComponents = ctrlBtnWrapper.querySelector(
+      ".section-wrap-btns.components"
+    );
+    optsMenuBtn = sectionComponents.querySelector(".opts-menu_btn");
+    optsMenu = sectionComponents.querySelector(".opts-menu");
+    dimmer = sectionComponents.querySelector(".dimmer");
+    textImgBtn = sectionComponents.querySelector(".text-img-btn");
+    textImgBtnLabel = "image";
+    allCtrlBtnsComponents = ctrlBtnWrapper.querySelectorAll(
+      ".ctrl-btn.components"
+    );
+    activeDatasheet;
+    //............................................................
+    //............................................................
+    //FUNCTIONS
+    ComponentsFunction = function() {
+      console.log("inside components function");
+    };
+    AddHandlerVidsComponentDatasheetsEnds = function(handler) {
+      this.allVidsComponentDatasheets.forEach(function(el) {
+        el.addEventListener("ended", function() {
+          handler();
+        });
+      });
+    };
+    AddHandlerMenuBtn = function(handler) {
+      this.optsMenuBtn.addEventListener("click", function() {
+        handler();
+      });
+    };
+    AddHandlerMenuOptBtn = function(handler) {
+      this.optsMenu.addEventListener("click", function(e) {
+        const clicked = e.target.closest(".opts-menu_link");
+        const clickedBtnContent = clicked.textContent;
+        if (!clicked) return;
+        handler(clickedBtnContent);
+      });
+    };
+    AddHandlerVidsComponentViewsEnds = function(handler) {
+      this.allVidsComponentViews.forEach((el) => {
+        el.addEventListener("ended", () => {
+          if (currentViewName === "view-a") {
+            SetStartBtnRange(0);
+            SetEndBtnRange(5);
+          } else {
+            SetStartBtnRange(6);
+            SetEndBtnRange(11);
+          }
+          handler();
+        });
+      });
+    };
+    AddHandlerTextImgBtn = function(handler) {
+      this.textImgBtn.addEventListener("click", function() {
+        handler();
+      });
+    };
+    AddHandlerCtrlBtnWrapperComponents = function(handler) {
+      ctrlBtnWrapper.addEventListener("click", function(e) {
+        const clicked = e.target.closest(".ctrl-btn.components");
+        if (!clicked) return;
+        const parentElement = clicked.parentElement;
+        SetCtrlBtnIndex(
+          Array.prototype.indexOf.call(parentElement.children, clicked)
+        );
+        handler();
+      });
+    };
+    AddHandlerBackBtn = function(handler) {
+      ctrlBtnWrapper.addEventListener("click", function(e) {
+        const clicked = e.target.closest(".ctrl-btn.back");
+        if (!clicked) return;
+        handler();
+      });
+    };
+    DisplayDataSheet = function() {
+      DeactivateActivateSectionImage("comps", ctrlBtnIndex);
+      this.dimmer.classList.add("active");
+      this.ActivateDeactivateDatasheetTextAndButtons(true);
+    };
+    ActivateDeactivateDatasheetTextAndButtons = function(activeDeactivate) {
+      this.textImgBtn.classList.toggle("active", activeDeactivate);
+      this.datasheetsAllWrapper.classList.toggle("active", activeDeactivate);
+      this.allDatasheetWraps.forEach((el, index) => {
+        el.classList.remove("active");
+        el.querySelector(".comp-data-body-wrap").classList.add("active");
+        if (activeDeactivate && index === ctrlBtnIndex) {
+          el.classList.add("active");
+          this.activeDatasheet = el;
+        }
+      });
+      backBtn.classList.toggle("active", activeDeactivate);
+    };
+  };
+  var components_default = new components();
+
+  // src/3_instructions.js
+  var instructions = class {
+    //............................................................
+    //............................................................
+    //DEFINITIONS
+    instructionsSection = document.querySelector(".section_instructions");
+    allVidsInstructions = sectionInstructions.querySelectorAll(".vid");
+    allCtrlBtnsInstructions = sectionInstructions.querySelectorAll(
+      ".ctrl-btn.instructions"
+    );
+    currentInstructionVid;
+    instructionVidTimer;
+    //............................................................
+    //............................................................
+    //FUNCTIONS
+    AddHandlerVidsInstructionsEnds = function(handler) {
+      this.allVidsInstructions.forEach(function(el) {
+        el.addEventListener("ended", function() {
+          el.classList.remove("active");
+          el.pause();
+          handler();
+        });
+      });
+    };
+    AddHandlerCtrlBtnWrapperInstructions = function(handler) {
+      ctrlBtnWrapper.addEventListener("click", (e) => {
+        const clicked = e.target.closest(".ctrl-btn.instructions");
+        if (!clicked) return;
+        const parentElement = clicked.parentElement;
+        this.currentInstructionVid = Array.prototype.indexOf.call(
+          parentElement.children,
+          clicked
+        );
+        handler();
+      });
+    };
+    ResetToInstructionsMainScreen = function() {
+      FlashBlackout(BLACKOUT_EXTRA);
+      DeactivateSectionVideos();
+      DeactivateActivateSectionText("main");
+      DeactivateActivateSectionImage("main");
+      DeactivateActivateCurrentCtrlButtons("instructions", false);
+    };
+  };
+  var instructions_default = new instructions();
+
+  // src/0_navigation.js
+  var navigation = class {
+    AddHandlerAllCtrlBtnsMouseEnter = function(handler) {
+      allCtrlBtns.forEach(function(el) {
+        el.addEventListener("mouseenter", function() {
+          handler(el);
+        });
+      });
+    };
+    AddHandlerAllCtrlBtnsMouseLeave = function(handler) {
+      allCtrlBtns.forEach(function(el) {
+        el.addEventListener("mouseleave", function() {
+          handler(el);
+        });
+      });
+    };
+    AddHandlerAllNavLinks = function(handler) {
+      allNavLinks.forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          const clicked = e.target.closest(".nav_menu_link");
+          if (!clicked) return;
+          handler(clicked);
+        });
+      });
+    };
+    ActivateNavLink = function() {
+      allNavLinks.forEach(function(el) {
+        el.classList.remove("current");
+        if (el.classList.contains(activeSectionName))
+          el.classList.add("current");
+      });
+    };
+    ResetSectionSpecial = function() {
+      switch (activeSectionName) {
+        case "features":
+          ActivateSectionVideo("main");
+          DeactivateActivateCurrentCtrlButtons("features");
+          break;
+        case "components":
+          components_default.optsMenu.classList.remove("active");
+          DeactivateActivateSectionImage(currentViewName);
+          [
+            components_default.datasheetsAllWrapper,
+            ...components_default.allDatasheetWraps
+          ].forEach(function(el) {
+            el.classList.remove("active");
+          });
+          if (currentViewName === "view-a") {
+            SetStartBtnRange(COMP_BTNS_START_RANGE_A);
+            SetEndBtnRange(COMP_BTNS_END_RANGE_A);
+          } else {
+            SetStartBtnRange(COMP_BTNS_START_RANGE_B);
+            SetEndBtnRange(COMP_BTNS_END_RANGE_B);
+          }
+          components_default.dimmer.classList.remove("active");
+          components_default.textImgBtn.textContent = "image";
+          components_default.textImgBtnLabel = "image";
+          DeactivateActivateCtrlBtnRange(
+            "components",
+            startBtnRange,
+            endBtnRange
+          );
+          break;
+        case "instructions":
+          clearTimeout(instructions_default.instructionVidTimer);
+          instructions_default.instructionVidTimer = null;
+          DeactivateActivateSectionImage("main");
+          DeactivateActivateCurrentCtrlButtons("instructions");
+          break;
+      }
+    };
+  };
+  var navigation_default = new navigation();
+
+  // src/main.js
+  console.log("main");
+  var MainAllCtrlBtnsMouseEnter = function(ctrlBtn) {
+    ctrlBtn.classList.add("hovered");
+  };
+  var MainAllCtrlBtnsMouseLeave = function(ctrlBtn) {
+    ctrlBtn.classList.remove("hovered");
+  };
+  var MainAllNavLinks = function(navLink) {
+    SetActiveSectionName(navLink.classList[1]);
+    SetActiveSection(
+      document.querySelector(`.section_${activeSectionName}`)
+    );
+    navigation_default.ActivateNavLink();
+    if (components_default.activeDatasheet)
+      components_default.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0, 0);
+    navigation_default.ResetSectionSpecial();
+    clearTimeout(features_default.featureVidTimer);
+    ResetSectionVideos("all");
+    DeactivateActivateSectionText("main");
+    ActivateSection();
+    ActivateSectionButtons();
+    if (activeSectionName === "features") PlaySectionVideo("main");
+  };
+  var MainFeaturesVidsEnds = function() {
+    features_default.ResetToFeaturesMainScreen();
+  };
+  var MainCtrlBtnsFeatures = function() {
+    FlashBlackout(BLACKOUT_STANDARD);
+    DeactivateActivateSectionText();
+    DeactivateActivateSectionImage();
+    ResetSectionVideos();
+    ActivateSectionVideo("features", ctrlBtnIndex);
+    PlaySectionVideo("features", ctrlBtnIndex);
+    DeactivateActivateCurrentCtrlButtons("features", ctrlBtnIndex);
+    features_default.featureVidTimer = setTimeout(function() {
+      DeactivateActivateSectionText("feature", ctrlBtnIndex);
+    }, DELAY_BEFORE_FEATURE_TEXT);
+  };
+  var MainVidsComponentDatasheetsEnds = function() {
+    components_default.DisplayDataSheet();
+  };
+  var MainBackBtn = function() {
+    components_default.activeDatasheet.querySelector(".comp-data-body-wrap").scroll(0, 0);
+    ResetSectionVideos("components", "datasheets");
+    DeactivateActivateSectionImage(currentViewName);
+    components_default.dimmer.classList.remove("active");
+    components_default.ActivateDeactivateDatasheetTextAndButtons(false);
+    DeactivateActivateSectionText("main");
+    ActivateSection();
+    ActivateSectionButtons();
+  };
+  var MainCtrlBtnsComponents = function() {
+    components_default.optsMenu.classList.remove("active");
+    DeactivateActivateSectionText();
+    DeactivateActivateSectionImage();
+    ResetSectionVideos();
+    ActivateSectionVideo("datasheets", ctrlBtnIndex);
+    PlaySectionVideo("datasheets", ctrlBtnIndex);
+    components_default.ctrlBtnWrapperComponents.classList.remove("active");
+  };
+  var MainMenuBtn = function() {
+    components_default.optsMenu.classList.add("active");
+  };
+  var MainMenuOptBtn = function(clickedBtnContent) {
+    components_default.optsMenu.classList.remove("active");
+    if (currentViewName !== clickedBtnContent) {
+      SetCurrentViewName(clickedBtnContent);
+      components_default.optsMenuBtn.textContent = currentViewName;
+      DeactivateActivateSectionText();
+      DeactivateActivateSectionImage();
+      ResetSectionVideos();
+      ActivateSectionVideo(currentViewName);
+      PlaySectionVideo(currentViewName);
+      components_default.ctrlBtnWrapperComponents.classList.remove("active");
+    }
+  };
+  var MainComponentVidsViewsEnds = function() {
+    DeactivateActivateSectionImage(currentViewName);
+    DeactivateActivateSectionText("main");
+    components_default.ctrlBtnWrapperComponents.querySelectorAll(".ctrl-btn").forEach(function(el) {
+      el.classList.remove("active");
+    });
+    DeactivateActivateCtrlBtnRange(
+      "components",
+      startBtnRange,
+      endBtnRange
+    );
+    components_default.ctrlBtnWrapperComponents.classList.add("active");
+  };
+  var MainTextImgBtn = function() {
+    components_default.textImgBtnLabel === "image" ? components_default.textImgBtn.textContent = "text" : components_default.textImgBtn.textContent = "image";
+    components_default.textImgBtnLabel = components_default.textImgBtn.textContent;
+    components_default.activeDatasheet.querySelector(".comp-data-body-wrap").classList.toggle("active");
+    components_default.dimmer.classList.toggle("active");
+  };
+  var MainInstructionsVidsEnds = function() {
+    instructions_default.instructionVidTimer = setTimeout(function() {
+      instructions_default.currentInstructionVid += 1;
+      if (instructions_default.currentInstructionVid === NO_OF_INSTRUCTION_VIDS && INSTRUCTION_VIDS_LOOPING) {
+        instructions_default.currentInstructionVid = 0;
+      } else if (instructions_default.currentInstructionVid === NO_OF_INSTRUCTION_VIDS && !INSTRUCTION_VIDS_LOOPING) {
+        instructions_default.ResetToInstructionsMainScreen();
+        return;
+      }
+      FlashBlackout(BLACKOUT_STANDARD);
+      ActivateSectionVideo(
+        "instructions",
+        instructions_default.currentInstructionVid
+      );
+      PlaySectionVideo("instructions", instructions_default.currentInstructionVid);
+      DeactivateActivateCurrentCtrlButtons(
+        "instructions",
+        instructions_default.currentInstructionVid
+      );
+    }, PAUSE_BETWEEN_INSTRUCTION_VIDS);
+  };
+  var MainCtrlBtnsInstructions = function() {
+    clearTimeout(instructions_default.instructionVidTimer);
+    instructions_default.instructionVidTimer = null;
+    FlashBlackout(BLACKOUT_STANDARD);
+    ActivateSectionVideo(
+      "instructions",
+      instructions_default.currentInstructionVid
+    );
+    ResetSectionVideos();
+    DeactivateActivateSectionText();
+    DeactivateActivateSectionImage();
+    PlaySectionVideo("instructions", instructions_default.currentInstructionVid);
+    DeactivateActivateCurrentCtrlButtons(
+      "instructions",
+      instructions_default.currentInstructionVid
+    );
+  };
+  var init = function() {
+    navigation_default.AddHandlerAllCtrlBtnsMouseEnter(MainAllCtrlBtnsMouseEnter);
+    navigation_default.AddHandlerAllCtrlBtnsMouseLeave(MainAllCtrlBtnsMouseLeave);
+    navigation_default.AddHandlerAllNavLinks(MainAllNavLinks);
+    features_default.AddHandlerVidsFeaturesEnd(MainFeaturesVidsEnds);
+    components_default.AddHandlerVidsComponentDatasheetsEnds(
+      MainVidsComponentDatasheetsEnds
+    );
+    features_default.AddHandlerCtrlBtnWrapperFeatures(MainCtrlBtnsFeatures);
+    components_default.AddHandlerMenuBtn(MainMenuBtn);
+    components_default.AddHandlerMenuOptBtn(MainMenuOptBtn);
+    components_default.AddHandlerBackBtn(MainBackBtn);
+    components_default.AddHandlerVidsComponentViewsEnds(MainComponentVidsViewsEnds);
+    components_default.AddHandlerTextImgBtn(MainTextImgBtn);
+    components_default.AddHandlerCtrlBtnWrapperComponents(MainCtrlBtnsComponents);
+    instructions_default.AddHandlerVidsInstructionsEnds(MainInstructionsVidsEnds);
+    instructions_default.AddHandlerCtrlBtnWrapperInstructions(MainCtrlBtnsInstructions);
+    ctrlBtnWrapper.classList.remove("active");
+  };
+  init();
+  window.addEventListener("load", function() {
+    navLinkInstructions.click();
+    navLinkComponents.click();
+    navLinkFeatures.click();
+    this.setTimeout(function() {
+      navBar.classList.add("active");
+      ctrlBtnWrapper.classList.add("active");
+      SetInitializing(false);
+      loader.classList.remove("active");
+      blackout.classList.add("off");
+    }, BLACKOUT_INIT);
+  });
+})();

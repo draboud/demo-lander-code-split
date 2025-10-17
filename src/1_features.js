@@ -14,6 +14,7 @@ class features {
   allCtrlBtnsFeatures =
     global.ctrlBtnWrapper.querySelectorAll(".ctrl-btn.features");
   featureVidTimer;
+
   //............................................................
   //............................................................
   //FUNCTIONS
@@ -40,6 +41,11 @@ class features {
   };
   ResetToFeaturesMainScreen = function () {
     setTimeout(function () {
+      global.ctrlBtnWrapper
+        .querySelectorAll(".ctrl-btn.features")
+        .forEach(function (el) {
+          el.style.pointerEvents = "auto";
+        }); //hacky? figure out how to access allCtrlBtnFeatures from this module
       global.FlashBlackout(BLACKOUT_STANDARD);
       global.DeactivateActivateSectionImage();
       global.DeactivateActivateSectionText("main");

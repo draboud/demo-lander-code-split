@@ -1,4 +1,4 @@
-// console.log("main");
+console.log("main");
 //.......................................................................
 //.......................................................................
 //IMPORTS
@@ -49,6 +49,9 @@ const MainAllNavLinks = function (navLink) {
 //.......................................................................
 //FEATURES
 const MainFeaturesVidsEnds = function () {
+  features.allCtrlBtnsFeatures.forEach(function (el) {
+    el.style.pointerEvents = "none";
+  });
   features.ResetToFeaturesMainScreen();
 };
 const MainCtrlBtnsFeatures = function () {
@@ -80,6 +83,7 @@ const MainBackBtn = function () {
   global.ActivateSectionButtons();
 };
 const MainCtrlBtnsComponents = function () {
+  clearTimeout(features.featureVidTimer);
   components.optsMenu.classList.remove("active");
   global.DeactivateActivateSectionText();
   global.DeactivateActivateSectionImage();
